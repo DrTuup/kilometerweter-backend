@@ -5,24 +5,24 @@ import (
 	"rubenclaessens.nl/kilometerweter-backend/handlers"
 )
 
-func GetRegistrationsRouter(router *gin.Engine) {
-	router.GET("/registrations", handlers.GetRegistrations)
+func getRegistrationsRouter(router *gin.Engine) {
+	router.GET("/registrations", handlers.GetRegistrationsHandler)
 }
 
-func PostRegistrationsRouter(router *gin.Engine) {
-	router.POST("/registrations", handlers.PostRegistrations)
+func postRegistrationRouter(router *gin.Engine) {
+	router.POST("/registrations", handlers.PostRegistrationHandler)
 }
 
-func DeleteRegistrationRouter(router *gin.Engine) {
-	router.DELETE("/registrations/:id", handlers.DeleteRegistration)
+func deleteRegistrationRouter(router *gin.Engine) {
+	router.DELETE("/registrations/:id", handlers.DeleteRegistrationHandler)
 }
 
-func SetupRouters() {
+func SetupRouters() *gin.Engine {
 	router := gin.Default()
 
-	GetRegistrationsRouter(router)
-	PostRegistrationsRouter(router)
-	DeleteRegistrationRouter(router)
+	getRegistrationsRouter(router)
+	postRegistrationRouter(router)
+	deleteRegistrationRouter(router)
 
-	router.Run(":8080")
+	return router
 }
