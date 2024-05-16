@@ -20,7 +20,7 @@ func main() {
 	DB_PASSWORD := os.Getenv("DB_PASSWORD")
 	DB_NAME := os.Getenv("DB_NAME")
 	DB_PORT := os.Getenv("DB_PORT")
-	APP_PORT := os.Getenv("APP_PORT")
+	API_PORT := os.Getenv("API_PORT")
 	GIN_MODE := os.Getenv("GIN_MODE")
 
 	if GIN_MODE == "release" {
@@ -33,6 +33,6 @@ func main() {
 
 	r := routers.SetupRouters()
 
-	r.Run(":" + APP_PORT)
+	r.Run(":" + API_PORT)
 
 }
