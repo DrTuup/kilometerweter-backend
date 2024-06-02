@@ -32,3 +32,16 @@ func DeleteRegistration(id string) (err error) {
 	}
 	return nil
 }
+
+func UpdateRegistration(id string, r Registration) (err error) {
+	if err = config.DB.Model(&Registration{}).Where("id = ?", id).Updates(r).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func RegistrationExists(id string) bool {
+	var registration Registration
+	config.DB.Where("id = ?", id).First(&registration)
+	return registration.ID != 0
+}

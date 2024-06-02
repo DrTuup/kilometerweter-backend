@@ -49,3 +49,32 @@ func DeleteRegistrationHandler(c *gin.Context) {
 		"message": "Deleted registration with id " + id,
 	})
 }
+
+func UpdateRegistrationHandler(c *gin.Context) {
+	id := c.Param("id")
+
+	// check if the registration exists
+	if !models.RegistrationExists(id) {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Registration with id " + id + " not found"})
+		return
+	}
+
+	// bind the request body to the registration struct
+	var registration models.Registration
+	if err := c.ShouldBindJSON(&registration); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	// update the registration
+	err := models.UpdateRegistration(id, registration)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update registration"})
+		return
+	}
+
+	c.IndentedJSON(http.StatusOK, gin.H{
+		"message": "Updated registration with id " + id,
+	})
+}
