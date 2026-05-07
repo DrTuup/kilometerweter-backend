@@ -2,7 +2,7 @@ module rubenclaessens.nl/kilometerweter-backend
 
 go 1.25.0
 
-toolchain go1.25.7
+toolchain go1.26.3
 
 require (
 	github.com/gin-contrib/cors v1.7.7
