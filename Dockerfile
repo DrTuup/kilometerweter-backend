@@ -1,5 +1,5 @@
 # Create a stage for building the application.
-ARG GO_VERSION=1.26.4
+ARG GO_VERSION=1.27.1
 FROM --platform=$BUILDPLATFORM golang:${GO_VERSION} AS build
 WORKDIR /src
 
